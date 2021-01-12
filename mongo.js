@@ -37,10 +37,11 @@ db.once('open', function(){
     const Recipe = mongoose.model('Recipe', recipeSchema); 
 
     /* documents */ 
-    let stoneSoupObj = {
-        name : "Stone Soup", 
-        description: "A soup made by tricked villagers",
-        instructions: "Trick each villager into donating for the soup for everyone",
+    let recipesArr = [
+        {
+        name : "Carrot Soup", 
+        description: "A soup made with carrot",
+        instructions: "Blend carrots, onions, cream, and vetable stock in vitamix and heat up the mixture then serve.",
         ingredients : [ 
             { name : "Carrots",
             measurement: "Cups", 
@@ -48,16 +49,53 @@ db.once('open', function(){
             
             { name : "Onions",
             measurement: "Cups", 
-            amount : 5.5 },
+            amount : 5 },
 
-            { name : "Whatever is on hand",
+            { name : "Cream",
             measurement: "Cups", 
-            amount : 5 
+            amount : 2 
+            },
+
+            { name : "Vegetable stock",
+            measurement: "Cups", 
+            amount : 2 
             }
         ]
-    };
+    },
+    {
+        name : "Cream of tomatoes soup", 
+        description: "A soup made with tomatoes",
+        instructions: "Blend crushed tomatoes, onions, cream, and vetable stock in vitamix and heat up the mixture then serve.",
+        ingredients : [ 
+            { name : "Crushed tomatoes",
+            measurement: "Cans", 
+            amount : 2 },
+            
+            { name : "Onions",
+            measurement: "Cups", 
+            amount : 5 },
 
-    let stoneSoup = new Recipe(stoneSoupObj);
+            { name : "Cream",
+            measurement: "Cups", 
+            amount : 2 
+            }
+        ]
+    },
+    {
+        name : "Egg drop soup", 
+        description: "A Chinese soup made with egg",
+        instructions: "Whip beaten eggs in boiled chicken broth then serve.",
+        ingredients : [ 
+            { name : "Chicken stock",
+            measurement: "Cups", 
+            amount : 5 },
+            
+            { name : "Egg",
+            measurement: "Each", 
+            amount : 3 },
+        ]
+    }
+];
 
     let silence = new Kitten({ name : "Silence" }); 
     silence.speak(); 
