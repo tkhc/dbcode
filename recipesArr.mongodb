@@ -84,9 +84,15 @@ db.recipes.updateOne(
   }
 );
 
+//The positional $ operator acts as a placeholder for the first match of the update query document.
+db.recipes.updateOne(
+  {"name":"Egg drop soup", "ingredients.name": "Egg" },
+  {$set: {"ingredients.$.amount" : 5 } }
+);
+
 db.recipes.replaceOne(
   {"instructions":"Blend crushed tomatoes, onions, cream, and vetable stock in vitamix and heat up the mixture then serve."},
   {"instructions":"Blend crushed tomatoes, onions, cream, and vegetable stock in vitamix and chill then serve."}
 );
 
-db.recipes.find();
+db.recipes.find()

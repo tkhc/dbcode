@@ -126,4 +126,4 @@ db.recipes.updateOne(
 db.recipes.replaceOne(
   {"instructions":"Blend crushed tomatoes, onions, cream, and vetable stock in vitamix and heat up the mixture then serve."},
   {"instructions":"Blend crushed tomatoes, onions, cream, and vegetable stock in vitamix and chill then serve."}
-);
+)
