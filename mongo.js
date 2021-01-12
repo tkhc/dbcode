@@ -41,7 +41,7 @@ db.once('open', function(){
         {
         name : "Carrot Soup", 
         description: "A soup made with carrot",
-        instructions: "Blend carrots, onions, cream, and vetable stock in vitamix and heat up the mixture then serve.",
+        instructions: "Blend carrots, onions, cream, and vegetable stock in vitamix and heat up the mixture then serve.",
         ingredients : [ 
             { name : "Carrots",
             measurement: "Cups", 
@@ -97,34 +97,33 @@ db.once('open', function(){
     }
 ];
 
-    let silence = new Kitten({ name : "Silence" }); 
-    silence.speak(); 
-    silence.name = "Loud";
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
-    const fluffy = new Kitten({name : "fluffy"}); 
-    fluffy.speak(); 
+// Select the database to use.
+use('mongodbVSCodePlaygroundDB');
+db.recipes.insertMany(recipesArr);
+/*Insert 3 new recipes and their ingredients, amounts, and measures in to the Database
+Insert 3 new recipes and their ingredients, amounts, and measures in to the Database
+Write a query to get a list of all the Recipes
+Write a query to get a list of Recipes that use a certain Ingredient
+Write a query to update a recipe you added*/
 
-    /* how to save a document after it's been created/updated */ 
-    fluffy.save(function(err, fluffy){
-        if(err) return console.error(err); 
-        fluffy.speak(); 
-    });
+db.recipes.find();
 
-    silence.save(function(err,cat){
-        if(err) return console.error(err);
-        cat.speak(); 
-    })
-    
-    /*find is a method attached directly to our Kitten model/class */ 
-    Kitten.find(function(err, kittens){
-        if(err) return console.error(err);
-        console.log(kittens); 
-    })
+db.recipes.find({"ingredients.name":"Egg"});
 
-    /* mongoose supports mongodb's rich query language */ 
-    Kitten.find({ name: /^fluff/ }, function(err,cat){
-        //check for errors
-        //print to console. 
-    })
+db.recipes.updateOne(
+  {"name":"Carrot Soup"},
+  {$set: {"name": "Cold Carrot Soup", status: "P"},
+  $currentDate: {
+    lastModified: true}
+  }
+);
 
-});
+db.recipes.replaceOne(
+  {"instructions":"Blend crushed tomatoes, onions, cream, and vetable stock in vitamix and heat up the mixture then serve."},
+  {"instructions":"Blend crushed tomatoes, onions, cream, and vegetable stock in vitamix and chill then serve."}
+);
